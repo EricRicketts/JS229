@@ -10,7 +10,7 @@ describe('todo object behavior', function () {
         year: '2017',
         description: 'Milk for baby'
       };
-      todo = new Todo(0, todoData);
+      todo = Todo.init(0, todoData);
     });
 
     it('should be an object', function () {
