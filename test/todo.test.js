@@ -10,15 +10,11 @@ describe('todo object behavior', function () {
         year: '2017',
         description: 'Milk for baby'
       };
-      todo = TodoItem.init(0, todoData);
+      todo = new TodoItem(0, todoData);
     });
 
     it('should be an object', function () {
       expect(Object.prototype.toString.call(todo)).toBe('[object Object]');
-    });
-
-    it('cannot add properties to a todo object', function () {
-      expect(() => { todo.foo = 'foo' }).toThrow(TypeError);
     });
 
     it('properties can be retrieved through getters', function () {
@@ -28,10 +24,6 @@ describe('todo object behavior', function () {
       ];
       expected = [0, false, 'Buy Milk', '1', '2017', 'Milk for baby'];
       expect(results).toEqual(expected);
-    });
-
-    it('Once the todo id is set it cannot be modified', function () {
-      expect(() => { todo.id = 1 }).toThrow(TypeError);
     });
 
     it('change properties through the setters', function () {
@@ -48,6 +40,10 @@ describe('todo object behavior', function () {
       ];
 
       expect(results).toEqual(expected);
+    });
+
+    it('cannot write to the id property', function () {
+      expect(() => { todo.id = 1; }).toThrow(TypeError);
     });
 
     it('allow for identifying month and year of todo item', function () {
