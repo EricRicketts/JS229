@@ -1,4 +1,4 @@
-import { Todo } from '../code/todo';
+import { TodoItem } from '../code/todo';
 
 describe('todo object behavior', function () {
   let todoData, todo, results, expected;
@@ -10,7 +10,7 @@ describe('todo object behavior', function () {
         year: '2017',
         description: 'Milk for baby'
       };
-      todo = Todo.init(0, todoData);
+      todo = TodoItem.init(0, todoData);
     });
 
     it('should be an object', function () {

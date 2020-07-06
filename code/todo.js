@@ -1,4 +1,4 @@
-  let Todo = {
+  let TodoItem = {
     init: function(id, data) {
       Object.defineProperty(this, 'id', {
         value: id,
@@ -20,4 +20,4 @@
   }
 
 
-export { Todo };
+export { TodoItem };
