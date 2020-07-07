@@ -9,10 +9,6 @@ import { TodoItem } from './todo';
         return this.todos;
       },
 
-      isCompletedABoolean(completed) {
-        return typeof completed === 'boolean';
-      },
-
       isValidMonth(month) {
         const validMonths = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', ''];
 
