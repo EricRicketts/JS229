@@ -34,15 +34,14 @@ describe('TodoList', function () {
       }; 
       
       todoSet = [todoData1, todoData2, todoData3, todoData4]
+      todoList = new TodoList(todoSet);
     });
 
     it('should return a todo list object with 4 todo items', function () {
-      todoList = new TodoList(todoSet);
       expect(todoList.numberOfTodos()).toBe(4);
     });
 
     it('returns a todo Object based on the id property', function () {
-      todoList = new TodoList(todoSet);
       foundTodo = todoList.findTodo(2);
       let results = {
         title: foundTodo.title,
@@ -53,8 +52,7 @@ describe('TodoList', function () {
       expect(results).toEqual(todoData3);
     });
 
-    it('should add a new todo item', function () {
-      todoList = new TodoList(todoSet);
+    it.skip('should add a new todo item', function () {
       let todoData5 = {
         title: 'Buy novel',
         month: '4',
