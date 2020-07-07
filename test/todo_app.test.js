@@ -1,8 +1,8 @@
-import { TodoList, TodoManger  } from "../code/todoApp";
+import { TodoApp  } from "../code/todoApp";
 
 describe('todoApp', function () {
-  let todoData1, todoData2, todoData3, todoData4, todoData5, todoData6, todoSet, todoList,
-    todoManager, foundTodos, expected, results;
+  let todoData1, todoData2, todoData3, todoData4, todoData5, todoData6, todoSet,
+    foundTodos, todoApp, expected, results;
   beforeAll(() => {
     todoData1 = {
       title: 'Buy Milk',
@@ -47,26 +47,25 @@ describe('todoApp', function () {
     };
     
     todoSet = [todoData1, todoData2, todoData3, todoData4, todoData5, todoData6];
-    todoList = new TodoList(todoSet);
-    todoManager = new TodoManger(todoList);
+    todoApp = new TodoApp(todoSet);
   });
 
   it('todo manager returns all todo objects in an array', function () {
-    results = todoManager.allTodos();
+    results = todoApp.todoManager.allTodos();
     expect(results.length).toBe(6);
   });
 
   it('todo manager returns all completed todo objects in an array', function () {
-    todoList.updateTodoItem(0, { completed: true });
-    todoList.updateTodoItem(2, { completed: true });
-    results = todoManager.allCompletedTodos();
+    todoApp.todoList.updateTodoItem(0, { completed: true });
+    todoApp.todoList.updateTodoItem(2, { completed: true });
+    results = todoApp.todoManager.allCompletedTodos();
     expect(results.length).toBe(2);
     expected = [0, 2];
     expect([results[0].id, results[1].id]).toEqual(expected);
   });
 
   it('todo manager returns a list of todos based on month and year criteria', function () {
-    foundTodos = todoManager.findByMonthAndYear('1', '2017');
+    foundTodos = todoApp.todoManager.findByMonthAndYear('1', '2017');
     expect(foundTodos.length).toBe(2);
     results = [foundTodos[0].id, foundTodos[1].id];
     expected = [0, 1];
@@ -74,7 +73,7 @@ describe('todoApp', function () {
   });
 
   it('todo manager returns a list of todos based on monty, year, and completed criteria', function () {
-    foundTodos = todoManager.findCompletedByMonthAndYear('1', '2017');
+    foundTodos = todoApp.todoManager.findCompletedByMonthAndYear('1', '2017');
     expect(foundTodos.length).toBe(1);
     expect(foundTodos[0].id).toBe(0);
   });

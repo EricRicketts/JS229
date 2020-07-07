@@ -1,4 +1,8 @@
 import { TodoList } from "./todo_list";
 import { TodoManger } from "./todo_manager";
 
-export { TodoList, TodoManger };
+function TodoApp(todoSet) {
+  this.todoList = new TodoList(todoSet);
+  this.todoManager = new TodoManger(this.todoList);
+}
+export { TodoApp };
