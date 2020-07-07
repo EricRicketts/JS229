@@ -1,6 +1,12 @@
 # JS229 Take Home Assessment
 
 ## Instructions For Running the Tests
+The zipped file contains a directory and all files within the directory.
+
+to unzip (on macos) ```unzip JS229.zip```
+
+You should have a ```code``` and ```test``` directory with the appropriate files and a ```.babelrc``` file along
+with a ```packge.json``` file.
 
 I used Jest for unit testing.  To install the code to run the tests => ```npm install```
 
