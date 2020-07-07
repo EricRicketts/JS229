@@ -36,7 +36,7 @@ describe('TodoList', function () {
   });
 
   describe('Operations on valid data', function () {
-    let foundTodo;
+    let foundTodo, allTodos;
     it('should return a todo list object with 4 todo items', function () {
       expect(todoList.numberOfTodos()).toBe(4);
     });
@@ -153,6 +153,53 @@ describe('TodoList', function () {
       }
       expect(results).toEqual(expected);
       expect(foundTodo.qux).toBeUndefined();
+    });
+
+    it('should return the entire collection of todos', function () {
+      allTodos = todoList.getAllTodos();
+      expect(allTodos.length).toBe(4);
+    });
+
+    it('updates can only be done through updateTodoItem', function () {
+      allTodos = todoList.getAllTodos();
+      let todo = allTodos[0];
+      todo.completed = true;
+      expected = {
+        id: 0,
+        completed: true,
+        title: 'Buy Milk',
+        month: '1',
+        year: '2017',
+        description: 'Milk for baby',
+      }
+      results = {
+        id: todo.id,
+        completed: todo.completed,
+        title: todo.title,
+        month: todo.month,
+        year: todo.year,
+        description: todo.description
+      }
+      expect(results).toEqual(expected);
+
+      todo = todoList.findTodo(0);
+      expected = {
+        id: 0,
+        completed: false,
+        title: 'Buy Milk',
+        month: '1',
+        year: '2017',
+        description: 'Milk for baby',
+      }
+      results = {
+        id: todo.id,
+        completed: todo.completed,
+        title: todo.title,
+        month: todo.month,
+        year: todo.year,
+        description: todo.description
+      }
+      expect(results).toEqual(expected);
     });
   });
 });

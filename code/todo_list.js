@@ -111,6 +111,24 @@ import { TodoItem } from './todo';
       return todoItem;
     }
 
+    InnerTodoList.prototype.getAllTodos = function() {
+      let allTodos = privateMethodsAndData.getTodos();
+      let todoArray = [];
+      allTodos.forEach((todoItem) => {
+        let todoData = {
+          title: todoItem.title,
+          month: todoItem.month,
+          year: todoItem.year,
+          description: todoItem.description
+        }
+        let copyOfTododItem = new TodoItem(todoItem.id, todoData);
+        copyOfTododItem.completed = todoItem.completed;
+        todoArray.push(copyOfTododItem);
+      });
+
+      return todoArray;
+    }
+
     InnerTodoList.prototype.numberOfTodos = function () {
       return privateMethodsAndData.getTodos().length;
     }
