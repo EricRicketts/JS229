@@ -13,6 +13,7 @@ function TodoItem(id, data) {
   this.isWithinMonthYear = function(month, year) {
     return this.month === month && this.year === year;
   }
+  return Object.preventExtensions(this);
 }
 
 export { TodoItem };

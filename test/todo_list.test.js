@@ -3,7 +3,7 @@ import { TodoList } from "../code/todo_list";
 describe('TodoList', function () {
   let expected, results;
   describe('Operations on valid data', function () {
-    let todoData1, todoData2, todoData3, todoData4, todoSet, todoList;
+    let todoData1, todoData2, todoData3, todoData4, todoSet, todoList, foundTodo;
     beforeEach(() => {
       todoData1 = {
         title: 'Buy Milk',
@@ -34,22 +34,35 @@ describe('TodoList', function () {
       }; 
       
       todoSet = [todoData1, todoData2, todoData3, todoData4]
-      todoList = new TodoList(todoSet);
     });
 
     it('should return a todo list object with 4 todo items', function () {
+      todoList = new TodoList(todoSet);
       expect(todoList.numberOfTodos()).toBe(4);
     });
 
     it('returns a todo Object based on the id property', function () {
-      let foundToDo = todoList.findTodo(2);
+      todoList = new TodoList(todoSet);
+      foundTodo = todoList.findTodo(2);
       let results = {
-        title: foundToDo.title,
-        month: foundToDo.month,
-        year: foundToDo.year,
-        description: foundToDo.description
+        title: foundTodo.title,
+        month: foundTodo.month,
+        year: foundTodo.year,
+        description: foundTodo.description
       }
       expect(results).toEqual(todoData3);
+    });
+
+    it('should add a new todo item', function () {
+      todoList = new TodoList(todoSet);
+      let todoData5 = {
+        title: 'Buy novel',
+        month: '4',
+        year: '2018',
+        description: 'Present for wife'
+      }
+      todoList.addTodoItem(todoData5);
+      expect(todoList.numberOfTodos()).toBe(5);
     });
   });
 });

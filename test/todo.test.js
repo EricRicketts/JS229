@@ -46,6 +46,10 @@ describe('todo object behavior', function () {
       expect(() => { todo.id = 1; }).toThrow(TypeError);
     });
 
+    it('cannot add properties to the todo item object', function () {
+      expect(() => { todo.foo = 'foo'; }).toThrow(TypeError);
+    });
+
     it('allow for identifying month and year of todo item', function () {
       expected = [true, false];
       results = [
