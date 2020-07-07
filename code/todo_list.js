@@ -137,7 +137,17 @@ import { TodoItem } from './todo';
       let todoItem = privateMethodsAndData.getTodos().find((todo) => todo.id === id);
       Object.keys(updates).forEach((property) => {
         if (todoItem.hasOwnProperty(property)) {
-          todoItem[property] = updates[property];
+          if (property === 'title') {
+            todoItem[property] = privateMethodsAndData.initTitleOrDescription(updates[property]);
+          } else if (property === 'description') {
+            todoItem[property] = privateMethodsAndData.initTitleOrDescription(updates[property]);
+          } else if (property === 'month') {
+            todoItem[property] = privateMethodsAndData.initMonth(updates[property]);
+          } else if (property === 'year') {
+            todoItem[property] = privateMethodsAndData.initYear(updates[property])
+          } else {
+            todoItem[property] = updates[property];
+          }
         }
       });
     }

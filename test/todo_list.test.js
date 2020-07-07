@@ -204,7 +204,7 @@ describe('TodoList', function () {
   });
 
   describe('Operations on invalid data', function () {
-    let todoData;
+    let todoData, updates;
 
     it('cannot add an empty string for title', function () {
       todoData = {
@@ -216,7 +216,7 @@ describe('TodoList', function () {
       expect(() => { todoList.addTodoItem(todoData)}).toThrow(TypeError);
     });
 
-    it('cannot add an empty string for descripton', function () {
+    it('cannot add an empty string for description', function () {
       todoData = {
         title: 'Foo Bar',
         month: '5',
@@ -224,6 +224,16 @@ describe('TodoList', function () {
         description: ''
       }
       expect(() => { todoList.addTodoItem(todoData)}).toThrow(TypeError);
+    });
+
+    it('cannot update a todo item with an invalid month', function () {
+      updates = { month: '13' };
+      expect(() => { todoList.updateTodoItem(0, updates ) }).toThrow(TypeError);
+    });
+
+    it('cannot update a todo item with an invalid year', function () {
+      updates = { year: '300' }
+      expect(() => { todoList.updateTodoItem(1, updates)}).toThrow(TypeError);
     });
   });
 });
