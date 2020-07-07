@@ -8,7 +8,7 @@ to unzip (on macos) ```unzip JS229.zip```
 You should have a ```code``` and ```test``` directory with the appropriate files and a ```.babelrc``` file along
 with a ```packge.json``` file.
 
-I used Jest for unit testing.  To install the code to run the tests => ```npm install```
+I used Jest for unit testing.  To install the code, cd into the ```JS229``` directory and run => ```npm install```
 
 Key files for install to be successful are ```.babelrc``` and ```package.json```
 
