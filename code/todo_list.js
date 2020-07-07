@@ -105,7 +105,10 @@ import { TodoItem } from './todo';
         description: foundTodo.description
       };
 
-      return new TodoItem(foundTodo.id, todoData);
+      let todoItem = new TodoItem(foundTodo.id, todoData);
+      todoItem.completed = foundTodo.completed;
+
+      return todoItem;
     }
 
     InnerTodoList.prototype.numberOfTodos = function () {
