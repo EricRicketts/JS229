@@ -43,13 +43,49 @@ describe('TodoList', function () {
 
     it('returns a todo Object based on the id property', function () {
       foundTodo = todoList.findTodo(2);
-      let results = {
+      results = {
         title: foundTodo.title,
         month: foundTodo.month,
         year: foundTodo.year,
         description: foundTodo.description
       }
       expect(results).toEqual(todoData3);
+    });
+
+    it('changing a found todo item does not alter the collection', function () {
+      foundTodo = todoList.findTodo(2);
+      foundTodo.completed = true;
+      results = {
+        completed: foundTodo.completed,
+        title: foundTodo.title,
+        month: foundTodo.month,
+        year: foundTodo.year,
+        description: foundTodo.description
+      }
+      expected = {
+        completed: true,
+        title: 'Buy chocolate',
+        month: '1',
+        year: '',
+        description: 'For the cheat day',
+      }
+      expect(results).toEqual(expected);
+      expected = {
+        completed: false,
+        title: 'Buy chocolate',
+        month: '1',
+        year: '',
+        description: 'For the cheat day',
+      }
+      foundTodo = todoList.findTodo(2);
+      results = {
+        completed: foundTodo.completed,
+        title: foundTodo.title,
+        month: foundTodo.month,
+        year: foundTodo.year,
+        description: foundTodo.description
+      }
+      expect(results).toEqual(expected);
     });
 
     it('should add a new todo item', function () {
