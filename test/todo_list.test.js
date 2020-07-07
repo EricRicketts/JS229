@@ -62,5 +62,23 @@ describe('TodoList', function () {
       todoList.addTodoItem(todoData5);
       expect(todoList.numberOfTodos()).toBe(5);
     });
+
+    it('should remove a todo item', function () {
+      let removedTodo = todoList.deleteTodoItem(2);
+      expect(todoList.numberOfTodos()).toBe(4);
+      results = {
+        title: removedTodo.title,
+        month: removedTodo.month,
+        year: removedTodo.year,
+        description: removedTodo.description
+      };
+      expected = {
+        title: 'Buy chocolate',
+        month: '1',
+        year: '',
+        description: 'For the cheat day',
+      };
+      expect(results).toEqual(expected);
+    });
   });
 });

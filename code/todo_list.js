@@ -79,7 +79,12 @@ import { TodoItem } from './todo';
     InnerTodoList.prototype.addTodoItem = function (todoData) {
       let allIds = privateMethodsAndData.getTodos().map((todo) => todo.id);
       let maxId = Math.max(...allIds);
-      privateMethodsAndData.getTodos().push(new TodoItem(maxId, todoData));
+      privateMethodsAndData.getTodos().push(new TodoItem(maxId + 1, todoData));
+    }
+
+    InnerTodoList.prototype.deleteTodoItem = function(id) {
+      let foundIndex = privateMethodsAndData.getTodos().findIndex((todo) => todo.id === id);
+      return privateMethodsAndData.getTodos().splice(foundIndex, 1)[0];
     }
 
     InnerTodoList.prototype.findTodo = function (id) {
