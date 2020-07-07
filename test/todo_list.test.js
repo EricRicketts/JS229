@@ -202,4 +202,28 @@ describe('TodoList', function () {
       expect(results).toEqual(expected);
     });
   });
+
+  describe('Operations on invalid data', function () {
+    let todoData;
+
+    it('cannot add an empty string for title', function () {
+      todoData = {
+        title: '',
+        month: '5',
+        year: '2011',
+        description: 'foo bar'
+      }
+      expect(() => { todoList.addTodoItem(todoData)}).toThrow(TypeError);
+    });
+
+    it('cannot add an empty string for descripton', function () {
+      todoData = {
+        title: 'Foo Bar',
+        month: '5',
+        year: '2011',
+        description: ''
+      }
+      expect(() => { todoList.addTodoItem(todoData)}).toThrow(TypeError);
+    });
+  });
 });
