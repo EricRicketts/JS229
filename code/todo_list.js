@@ -79,7 +79,13 @@ import { TodoItem } from './todo';
     InnerTodoList.prototype.addTodoItem = function (todoData) {
       let allIds = privateMethodsAndData.getTodos().map((todo) => todo.id);
       let maxId = Math.max(...allIds);
-      privateMethodsAndData.getTodos().push(new TodoItem(maxId + 1, todoData));
+      let cleanData = {
+        title: privateMethodsAndData.initTitleOrDescription(todoData.title),
+        month: privateMethodsAndData.initMonth(todoData.month),
+        year: privateMethodsAndData.initYear(todoData.year),
+        description: privateMethodsAndData.initTitleOrDescription(todoData.description)
+      }
+      privateMethodsAndData.getTodos().push(new TodoItem(maxId + 1, cleanData));
     }
 
     InnerTodoList.prototype.deleteTodoItem = function(id) {
@@ -104,6 +110,15 @@ import { TodoItem } from './todo';
 
     InnerTodoList.prototype.numberOfTodos = function () {
       return privateMethodsAndData.getTodos().length;
+    }
+
+    InnerTodoList.prototype.updateTodoItem = function(id, updates) {
+      let todoItem = privateMethodsAndData.getTodos().find((todo) => todo.id === id);
+      Object.keys(updates).forEach((property) => {
+        if (todoItem.hasOwnProperty(property)) {
+          todoItem[property] = updates[property];
+        }
+      });
     }
 
     return InnerTodoList;

@@ -80,5 +80,38 @@ describe('TodoList', function () {
       };
       expect(results).toEqual(expected);
     });
+
+    it('should update an todo item', function () {
+      foundTodo = todoList.findTodo(4);
+      expected = {
+        title: 'Buy novel',
+        month: '4',
+        year: '2018',
+        description: 'Present for wife'
+      }
+      results = {
+        title: foundTodo.title,
+        month: foundTodo.month,
+        year: foundTodo.year,
+        description: foundTodo.description
+      }
+      expect(results).toEqual(expected);
+      todoList.updateTodoItem(4, { title: 'Foo Bar', description: 'Wife is mad', qux: 'quz' })
+      foundTodo = todoList.findTodo(4);
+      expected= {
+        title: 'Foo Bar',
+        month: '4',
+        year: '2018',
+        description: 'Wife is mad'
+      }
+      results = {
+        title: foundTodo.title,
+        month: foundTodo.month,
+        year: foundTodo.year,
+        description: foundTodo.description
+      }
+      expect(results).toEqual(expected);
+      expect(foundTodo.qux).toBeUndefined();
+    });
   });
 });
